@@ -1,22 +1,22 @@
 "use client";
 import { useState } from "react";
-import { Scanner } from "@yudiel/react-qr-scanner";
+import { IDetectedBarcode, Scanner } from "@yudiel/react-qr-scanner";
 
 export default function Home() {
   const [isScannerOpen, setIsScannerOpen] = useState(false);
 
-  const handleScan = (result: any) => {
-    if (result) {
+  // Assuming `result` is a string (common for QR codes)
+  const handleScan = (detectedCodes: IDetectedBarcode[]) => {
+    if (detectedCodes.length > 0) {
+      const result = detectedCodes[0];
       alert(`Scanned Result: ${result}`);
-      setIsScannerOpen(false); // ปิดหน้า scanner หลังจากสแกนสำเร็จ
+      setIsScannerOpen(false);
     }
   };
 
   return (
     <div>
-      <button onClick={() => setIsScannerOpen(true)}>
-        Open QR Scanner
-      </button>
+      <button onClick={() => setIsScannerOpen(true)}>Open QR Scanner</button>
 
       {isScannerOpen && (
         <div style={{ position: "relative", height: "300px", width: "100%" }}>
