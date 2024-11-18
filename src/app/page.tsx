@@ -8,7 +8,7 @@ export default function Home() {
   // Assuming `result` is a string (common for QR codes)
   const handleScan = (detectedCodes: IDetectedBarcode[]) => {
     if (detectedCodes.length > 0) {
-      const result = detectedCodes[0];
+      const result = detectedCodes[0].data;
       alert(`Scanned Result: ${result}`);
       setIsScannerOpen(false);
     }
